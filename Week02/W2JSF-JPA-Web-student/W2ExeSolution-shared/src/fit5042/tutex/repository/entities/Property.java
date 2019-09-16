@@ -16,6 +16,7 @@ import javax.persistence.NamedQuery;
  *
  * @author Eddie
  */
+// Added Entity comment and named query
 @Entity
 @NamedQuery(name=Property.GET_ALL_QUERY_NAME, query="select p from Property p")
 public class Property implements Serializable {
@@ -44,6 +45,7 @@ public class Property implements Serializable {
         this.tags = tags;
     }
 
+    // Defined primary key
     @Id
     @Column(name = "property_id")
     public int getPropertyId() {
