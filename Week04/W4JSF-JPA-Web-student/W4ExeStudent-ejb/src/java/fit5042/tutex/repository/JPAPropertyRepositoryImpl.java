@@ -17,10 +17,12 @@ import javax.persistence.criteria.Root;
  *
  * @author Eddie Leung
  */
+// Anotated stateless
 @Stateless
 public class JPAPropertyRepositoryImpl implements PropertyRepository {
 
-    //insert code (annotation) here to use container managed entity manager to complete these methods  
+    //insert code (annotation) here to use container managed entity manager to complete these methods
+    // Added persistence unit annotation to handle entity manager references
     @PersistenceContext(unitName = "W4ExeStudent-ejbPU")
     private EntityManager entityManager;
 
@@ -33,6 +35,7 @@ public class JPAPropertyRepositoryImpl implements PropertyRepository {
 
     @Override
     public Property searchPropertyById(int id) throws Exception {
+
         Property property = entityManager.find(Property.class, id);
         property.getTags();
         return property;
@@ -59,7 +62,7 @@ public class JPAPropertyRepositoryImpl implements PropertyRepository {
 
     @Override
     public void removeProperty(int propertyId) throws Exception {
-        //complete this method
+        //Made use of search by id method to check for existence before removing
         Property property = searchPropertyById(propertyId);
         if (property != null) {
             entityManager.remove(property);
@@ -78,7 +81,7 @@ public class JPAPropertyRepositoryImpl implements PropertyRepository {
 
     @Override
     public List<Property> searchPropertyByBudget(double budget) throws Exception {
-        //complete this method using Criteria API
+        //Made use of criteria builder to get all properties with prices less that or equal to budget
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery cQuery = builder.createQuery(Property.class);
         Root<Property> p = cQuery.from(Property.class);

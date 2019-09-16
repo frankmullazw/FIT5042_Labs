@@ -10,6 +10,7 @@ import javax.persistence.Embeddable;
  *
  * @author Eddie Leung
  */
+// Annotated as embeddable
 @Embeddable
 @Access(AccessType.PROPERTY)
 public class Address implements Serializable {
@@ -41,7 +42,8 @@ public class Address implements Serializable {
     }
 
     //complete by adding annotation here for column name = "street_address"
-    @Column(name="street_address")
+    //added annotation for column name = "street_address"
+    @Column(name = "street_address")
     public String getStreetAddress() {
         return streetAddress;
     }

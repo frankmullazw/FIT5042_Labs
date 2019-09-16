@@ -65,6 +65,7 @@ public class Property implements Serializable {
     }
 
     //insert annotation here to make addess as embeded to Property entity and stored as part of Property
+    // Added embedded annotation to use address class
     @Embedded
     public Address getAddress() {
         return address;
@@ -111,6 +112,7 @@ public class Property implements Serializable {
     }
 
     //annotate the attribute tags in Property class so that the tags of a property will be stored in a table called TAG. The tags of a property should be eagerly fetched and the value of each tag must be stored in a column VALUE in the TAG table
+    // Annotated tags with element collection so that the string values are used
     @ElementCollection(fetch=FetchType.EAGER)
     @CollectionTable(name="TAG")
     @Column(name="VALUE")
